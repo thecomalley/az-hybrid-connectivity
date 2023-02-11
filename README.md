@@ -3,7 +3,7 @@
 It's important for lab environments to simulate real world scenarios as much as possible, today we are going to look at deploying Hybrid connectivity to Azure using a couple of different options.
 
 Both methods will allow us to:
-- Access Azure resources from on-premises using a VPN tunnel
+- Access Azure resources from a workstation (simulating on-premises)
 - Resolve Azure Private DNS Zones from on-premises
 
 The above items are key for the lab environment, as it allows us develop and test on Azure Private DNS Zones, Private endpoints and Private Link Services
@@ -61,20 +61,20 @@ Azure Network Manager is a new service that allows you centrally manage your net
 1. 
 
 ## Option 2 - Custom IaaS Solution
-1. Comment out the module `native_hub` in `main.tf`
-2. 
-
-3. Confirm the device has been added to your Tailscale account
-4. Disassociate the Public IP from the VM
-5. Delete the Public IP
-
-
-    tailscale_authkey = "YOUR_TAILSCALE_AUTH_KEY"
-    admin_username    = "YOUR_ADMIN_USERNAME"
-
-Success! you now have a VPN tunnel to your Azure network. for only NZ$7.28 per month.
-
-## Network Manager (Preview)
+1. Change the module you want to use in `main.tf` to `custom-iaas`
+2. Update `terraform.tfvars` with the following settings:
+  ```yml
+  tailscale_authkey = "YOUR_TAILSCALE_AUTH_KEY" 
+  admin_username    = "YOUR_ADMIN_USERNAME"
+  ```
+3. Run `terraform init, plan & apply`
+   1. Terraform will call ansible to install the required packages
+4. Confirm the device has been added to your Tailscale account
+5. Enable the Subnet routes in Tailscale
+6. Add the Server IP as a Custom DNS resolver inside TailScale
+7. Test the connection by running nslookup against a private DNS Zone
+   1. eg: `nslookup privatezone.local`
+## Bonus: Azure Network Manager (Preview)
 
 Manual Steps
 - Deploy Policy to associate the spokes to the group

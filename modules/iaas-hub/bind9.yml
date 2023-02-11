@@ -3,30 +3,40 @@
   become: yes
   tasks:
 
-  - name: Copy named.conf file
-    copy:
-      src: named.conf
-      dest: /etc/bind/named.conf.options
-      owner: root
-      group: root
-      mode: 0644
-
-  - name: Install bind DNS server
+  - name: Install bind9
     apt:
       name: bind9
       state: present
-      update_cache: yes
 
-  # Allow Bind9 through firewall
+  - name: Create bind directory
+    file:
+      path: /etc/bind
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+
+  - name: Copy named.conf file
+    copy:
+      src: named.conf
+      dest: /etc/bind/named.conf
+      owner: root
+      group: root
+      mode: 0644
+  
   - name: Allow Bind9 through firewall
     ufw:
       rule: allow
       name: Bind9
 
-  # Restart Bind9
+  - name: Enable Bind9
+    systemd:
+      name: bind9
+      enabled: yes
+  
   - name: Restart Bind9
-    service:
+    systemd:
       name: bind9
       state: restarted
 
-# ansible-playbook -u omadmin -i 100.68.111.72 bind9.yml
+# ansible-playbook -u omadmin -i '100.101.135.179,' bind9.yml

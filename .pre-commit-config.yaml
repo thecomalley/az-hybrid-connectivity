@@ -1,0 +1,18 @@
+repos:
+- repo: https://github.com/antonbabenko/pre-commit-terraform
+  rev: 1.77.1
+  hooks:
+    - id: terraform_fmt
+    - id: terraform_docs
+    - id: infracost_breakdown
+
+  - repo: https://github.com/bridgecrewio/yor
+    rev: 0.1.143
+    hooks:
+      - id: yor
+        name: yor
+        entry: yor tag -d
+        args: ["."]
+        language: golang
+        types: [terraform]
+        pass_filenames: false

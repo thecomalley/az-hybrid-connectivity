@@ -17,10 +17,10 @@
       repo: deb https://pkgs.tailscale.com/stable/ubuntu jammy main
       state: present
 
-  # - name: Install Tailscale
-  #   apt:
-  #     name: tailscale
-  #     state: present
+  - name: Install Tailscale
+    apt:
+      name: tailscale
+      state: present
 
 # enable IP forwarding 
   - name: Enable IP forwarding
@@ -34,8 +34,4 @@
   - name: Run Tailscale up
     command: tailscale up --advertise-exit-node --advertise-routes=10.0.0.0/16 --authkey={{ tailscale_authkey }}
     register: tailscale_up
-    changed_when: tailscale_up.stdout.find('Logged in') != -1x
-
-### DNS Resolver ###
-
-  # install bind DNS server
+    failed_when: tailscale_up.rc != 0 and 'already up' not in tailscale_up.stderr
