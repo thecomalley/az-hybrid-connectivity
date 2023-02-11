@@ -12,9 +12,8 @@ The above items are key for the lab environment, as it allows us develop and tes
 
 ## Option 1 - Cloud Native Solution
 
-|                 |                   |
-| --------------- | ----------------- |
 | Cost            | NZ$46.28 per month |
+| --------------- | ----------------- |
 | Deployment time | 5 minutes         |
 
 This Option is the Azure Native way of doing things, it's the easiest to setup and maintain, but it's also the most expensive. This option is best suited for production environments. or for spinning up a lab environment for a short period of time.
@@ -26,12 +25,11 @@ This Option is the Azure Native way of doing things, it's the easiest to setup a
 
 ## Option 2 - Custom IaaS Solution
 
-|                 |                   |
-| --------------- | ----------------- |
 | Cost            | NZ$24.57 per month |
+| --------------- | ----------------- |
 | Deployment time | 5 minutes         |
 
-This option deploys an VM to manage both the VPN tunnel and the DNS Resolver. This option is best suited for lab environments that will be running for a long period of time. This option is also the cheapest option, it can also be easily deallocated when not in use.
+This option deploys an VM to manage both the VPN tunnel and the DNS Resolver. This option is what i use for my Azure Lab as i can quickly allocate and de-allocate the VM without having to wait for the VPN Gateway to be provisioned.
 
 - Azure Virtual Machine
   - TailScale VPN Client
@@ -45,22 +43,34 @@ Azure Network Manager is a new service that allows you centrally manage your net
 
 ---
 
+## Prerequisites
+- TailScale Account
+- TailScale Auth Key
+- 
+
 ## Getting Started
 
 1. Clone the repo
 2. Create a `terraform.tfvars` file with the following variables:
     ```
-    tailscale_authkey = "YOUR_TAILSCALE_AUTH_KEY"
-    admin_username    = "YOUR_ADMIN_USERNAME"
-    prefix            = "YOUR_PREFIX"
-
+    prefix            = "naming-prefix"
     ```
 3. Login to Azure with `az login`
-4. Run `terraform init`
-5. Run `terraform apply`
-6. Confirm the device has been added to your Tailscale account
-7. Disassociate the Public IP from the VM
-8. Delete the Public IP
+
+## Option 1 - Cloud Native Solution
+1. 
+
+## Option 2 - Custom IaaS Solution
+1. Comment out the module `native_hub` in `main.tf`
+2. 
+
+3. Confirm the device has been added to your Tailscale account
+4. Disassociate the Public IP from the VM
+5. Delete the Public IP
+
+
+    tailscale_authkey = "YOUR_TAILSCALE_AUTH_KEY"
+    admin_username    = "YOUR_ADMIN_USERNAME"
 
 Success! you now have a VPN tunnel to your Azure network. for only NZ$7.28 per month.
 

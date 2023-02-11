@@ -3,8 +3,8 @@ data "azurerm_subscription" "current" {
 
 resource "azurerm_network_manager" "hub" {
   name                = "${var.prefix}-hub-network-manager"
-  location            = azurerm_resource_group.hub.location
-  resource_group_name = azurerm_resource_group.hub.name
+  location            = var.location
+  resource_group_name = var.resource_group_name
   scope {
     subscription_ids = [data.azurerm_subscription.current.id]
   }
@@ -32,7 +32,7 @@ resource "azurerm_network_manager_connectivity_configuration" "hub" {
   }
 
   hub {
-    resource_id   = azurerm_virtual_network.hub.id
+    resource_id   = var.virtual_network_id
     resource_type = "Microsoft.Network/virtualNetworks"
   }
 }

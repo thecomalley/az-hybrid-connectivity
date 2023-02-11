@@ -16,17 +16,23 @@ resource "azurerm_virtual_network" "hub" {
 
 module "network_manager" {
   source = "./modules/network-manager"
+
+  prefix               = var.prefix
+  virtual_network_id = azurerm_virtual_network.hub.id
+  resource_group_name  = azurerm_resource_group.hub.name
+  location             = azurerm_resource_group.hub.location
 }
 
 module "iaas_hub" {
   source = "./modules/iaas-hub"
 
-  hub_vnet_id         = azurerm_virtual_network.hub.id
-  resource_group_name = azurerm_resource_group.hub.name
-  location            = azurerm_resource_group.hub.location
+  prefix               = var.prefix
+  virtual_network_name = azurerm_virtual_network.hub.name
+  resource_group_name  = azurerm_resource_group.hub.name
+  location             = azurerm_resource_group.hub.location
 
-  tailscale_authkey   = var.tailscale_authkey
-  admin_username      = var.admin_username
+  tailscale_authkey = var.tailscale_authkey
+  admin_username    = var.admin_username
 }
 
 # module "native_hub" {

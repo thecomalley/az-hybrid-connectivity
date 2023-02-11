@@ -1,3 +1,18 @@
+variable "resource_group_name" {
+  type        = string
+  description = "Resource group name"
+}
+
+variable "location" {
+  type        = string
+  description = "Location"
+}
+
+variable "virtual_network_name" {
+  type        = string
+  description = "Virtual network name"
+}
+
 variable "tailscale_authkey" {
   type        = string
   description = "Tailscale authkey"
@@ -11,9 +26,4 @@ variable "admin_username" {
 variable "prefix" {
   type        = string
   description = "Prefix for all resources"
-}
-
-variable "on_prem_cidr" {
-  type        = string
-  description = "CIDR for on-prem network"
 }
