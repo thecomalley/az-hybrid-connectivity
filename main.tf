@@ -35,7 +35,7 @@ resource "azurerm_virtual_network" "hub" {
 }
 
 resource "azurerm_private_dns_zone" "privatelink" {
-  name                = "vms.privatelink.azure"
+  name                = "privatelink.test"
   resource_group_name = azurerm_resource_group.hub.name
   tags = {
     yor_trace = "62492671-7209-4c42-9e66-768e4e289dd7"

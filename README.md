@@ -69,11 +69,19 @@ Azure Network Manager is a new service that allows you centrally manage your net
   ```
 3. Run `terraform init, plan & apply`
    1. Terraform will call ansible to install the required packages
-4. Confirm the device has been added to your Tailscale account
-5. Enable the Subnet routes in Tailscale
-6. Add the Server IP as a Custom DNS resolver inside TailScale
-7. Test the connection by running nslookup against a private DNS Zone
-   1. eg: `nslookup privatezone.local`
+
+### TailScale Configuration
+
+1. Enable the Subnet routes in Tailscale
+2. Add the Tailscale IP as a Custom DNS Server inside TailScale
+3. Restart the Tailscale client on your workstation
+
+### Test Connectivity
+
+- DNS: `nslookup {vm-name}.privatelink.test {tailscale IP}` 
+- Network: `ping {vm-name}.privatelink.test`
+
+
 ## Bonus: Azure Network Manager (Preview)
 
 Manual Steps
