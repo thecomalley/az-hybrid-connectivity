@@ -68,9 +68,9 @@ resource "azurerm_network_security_group" "hub" {
     destination_address_prefix = "*"
   }
   tags = {
-    git_commit           = "N/A"
+    git_commit           = "7eea79ce269eefe0e6300b3f16dc8f8721655611"
     git_file             = "modules/iaas-hub/main.tf.tf"
-    git_last_modified_at = "2023-02-11 23:55:20"
+    git_last_modified_at = "2023-02-11 23:57:31"
     git_last_modified_by = "31399219+thecomalley@users.noreply.github.com"
     git_modifiers        = "31399219+thecomalley"
     git_org              = "thecomalley"
@@ -109,9 +109,9 @@ resource "azurerm_linux_virtual_machine" "hub" {
     version   = "latest"
   }
   tags = {
-    git_commit           = "6999ea2ef34a1fa618b7dac872a12d70e49d951a"
+    git_commit           = "7eea79ce269eefe0e6300b3f16dc8f8721655611"
     git_file             = "modules/iaas-hub/main.tf.tf"
-    git_last_modified_at = "2023-02-11 09:58:42"
+    git_last_modified_at = "2023-02-11 23:57:31"
     git_last_modified_by = "31399219+thecomalley@users.noreply.github.com"
     git_modifiers        = "31399219+thecomalley"
     git_org              = "thecomalley"

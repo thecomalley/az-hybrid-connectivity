@@ -1,7 +1,3 @@
-provider "azurerm" {
-  features {}
-}
-
 resource "azurerm_resource_group" "hub" {
   name     = "${var.prefix}-hub-rg"
   location = "Australia East"
@@ -38,7 +34,14 @@ resource "azurerm_private_dns_zone" "privatelink" {
   name                = "privatelink.test"
   resource_group_name = azurerm_resource_group.hub.name
   tags = {
-    yor_trace = "62492671-7209-4c42-9e66-768e4e289dd7"
+    yor_trace            = "62492671-7209-4c42-9e66-768e4e289dd7"
+    git_commit           = "7368965336b92cde0040da21ef7cc7593464f632"
+    git_file             = "main.tf"
+    git_last_modified_at = "2023-02-12 00:06:19"
+    git_last_modified_by = "31399219+thecomalley@users.noreply.github.com"
+    git_modifiers        = "31399219+thecomalley"
+    git_org              = "thecomalley"
+    git_repo             = "az-hybrid-connectivity"
   }
 }
 
@@ -49,9 +52,9 @@ resource "azurerm_private_dns_zone_virtual_network_link" "hub" {
   virtual_network_id    = azurerm_virtual_network.hub.id
   registration_enabled  = true
   tags = {
-    git_commit           = "N/A"
+    git_commit           = "7eea79ce269eefe0e6300b3f16dc8f8721655611"
     git_file             = "main.tf"
-    git_last_modified_at = "2023-02-11 23:55:18"
+    git_last_modified_at = "2023-02-11 23:57:31"
     git_last_modified_by = "31399219+thecomalley@users.noreply.github.com"
     git_modifiers        = "31399219+thecomalley"
     git_org              = "thecomalley"

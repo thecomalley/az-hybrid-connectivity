@@ -39,9 +39,9 @@ resource "azurerm_virtual_network_gateway" "vpng" {
     address_space = ["10.2.0.0/24"]
   }
   tags = {
-    git_commit           = "427921f0c6effe612a31063890a5c07c268e82d0"
+    git_commit           = "7eea79ce269eefe0e6300b3f16dc8f8721655611"
     git_file             = "modules/native-hub/main.tf"
-    git_last_modified_at = "2023-02-11 09:27:08"
+    git_last_modified_at = "2023-02-11 23:57:31"
     git_last_modified_by = "31399219+thecomalley@users.noreply.github.com"
     git_modifiers        = "31399219+thecomalley"
     git_org              = "thecomalley"

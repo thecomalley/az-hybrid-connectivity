@@ -89,3 +89,47 @@ Manual Steps
   - name does not contain `hub`
 - Deploy the configuration to all regions?
 - policy to associate all subnets to central route table??
+
+
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | 1.3.8 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.43.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.43.0 |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_iaas_hub"></a> [iaas\_hub](#module\_iaas\_hub) | ./modules/iaas-hub | n/a |
+| <a name="module_network_manager"></a> [network\_manager](#module\_network\_manager) | ./modules/network-manager | n/a |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [azurerm_private_dns_zone.privatelink](https://registry.terraform.io/providers/hashicorp/azurerm/3.43.0/docs/resources/private_dns_zone) | resource |
+| [azurerm_private_dns_zone_virtual_network_link.hub](https://registry.terraform.io/providers/hashicorp/azurerm/3.43.0/docs/resources/private_dns_zone_virtual_network_link) | resource |
+| [azurerm_resource_group.hub](https://registry.terraform.io/providers/hashicorp/azurerm/3.43.0/docs/resources/resource_group) | resource |
+| [azurerm_virtual_network.hub](https://registry.terraform.io/providers/hashicorp/azurerm/3.43.0/docs/resources/virtual_network) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_admin_username"></a> [admin\_username](#input\_admin\_username) | Admin username | `string` | `""` | no |
+| <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix for all resources | `string` | n/a | yes |
+| <a name="input_tailscale_authkey"></a> [tailscale\_authkey](#input\_tailscale\_authkey) | Tailscale authkey | `string` | `""` | no |
+
+## Outputs
+
+No outputs.
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

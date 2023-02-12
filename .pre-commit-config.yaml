@@ -1,18 +1,44 @@
+# pre-commit run -a
 repos:
 - repo: https://github.com/antonbabenko/pre-commit-terraform
-  rev: 1.77.1
+  rev: v1.77.1
   hooks:
     - id: terraform_fmt
-    - id: terraform_docs
-    - id: infracost_breakdown
 
-  - repo: https://github.com/bridgecrewio/yor
-    rev: 0.1.143
-    hooks:
-      - id: yor
-        name: yor
-        entry: yor tag -d
-        args: ["."]
-        language: golang
-        types: [terraform]
-        pass_filenames: false
+    - id: tfupdate
+      name: Autoupdate Terraform versions
+
+    - id: tfupdate
+      name: Autoupdate Azurerm provider versions
+      args:
+        - --args=provider azurerm # Will be pined to latest version
+
+    - id: terraform_tflint
+
+    - id: terraform_checkov
+      args:
+        - --args=--quiet
+        - --args=--skip-check CKV_AZURE_50  # Virtual Machine Extensions are useful 
+        - --args=--skip-check CKV_AZURE_119
+
+    - id: terraform_docs
+      args:
+        - --hook-config=--path-to-file=README.md        # Valid UNIX path. I.e. ../TFDOC.md or docs/README.md etc.
+        - --hook-config=--add-to-existing-file=true     # Boolean. true or false
+        - --hook-config=--create-file-if-not-exist=true # Boolean. true or false
+
+    - id: infracost_breakdown
+      args:
+        - --args=--path=./
+      verbose: true # Always show costs
+
+- repo: https://github.com/bridgecrewio/yor
+  rev: 0.1.143
+  hooks:
+    - id: yor
+      name: yor
+      entry: yor tag -d
+      args: ["."]
+      language: golang
+      types: [terraform]
+      pass_filenames: false
